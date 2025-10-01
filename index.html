@@ -1,0 +1,79 @@
+
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Retro Coin – Klassresa</title>
+  <!-- Strikt CSP: endast self + docs.google.com för GViz -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://docs.google.com; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <main class="rc-wrap">
+    <header class="rc-header">
+      <h1>🎮 Klassens insamling</h1>
+      <div class="rc-controls">
+        <label class="rc-toggle"><input type="checkbox" id="rc-sound" checked> <span>🔔 Ljud</span></label>
+        <label class="rc-toggle"><input type="checkbox" id="rc-motion"> <span>🚫 Rörelse</span></label>
+      </div>
+    </header>
+
+    <section class="rc-board">
+      <div class="rc-figure-area">
+        <!-- 8‑bit power‑up container (pixel-lik form) -->
+        <svg id="rc-figure" viewBox="0 0 160 200" role="img" aria-label="Retro-figur som fylls med mynt">
+          <defs>
+            <!-- Figurens silhuett (8-bit blockig form) -->
+            <path id="rc-shape" d="M40 10 h80 v20 h20 v40 h-20 v20 h20 v40 h-20 v20 h-80 v-20 h-20 v-40 h20 v-20 h-20 v-40 h20z" />
+            <!-- Inre kavitet (något mindre) -->
+            <path id="rc-cavity" d="M50 20 h60 v20 h20 v20 h-20 v20 h20 v20 h-20 v20 h-60 v-20 h-20 v-20 h20 v-20 h-20 v-20 h20z" />
+            <clipPath id="rc-clip"><use href="#rc-cavity"/></clipPath>
+            <pattern id="rc-coins" width="22" height="14" patternUnits="userSpaceOnUse">
+              <image href="assets/coin.svg" x="0" y="0" width="18" height="18"/>
+              <image href="assets/coin.svg" x="10" y="6" width="18" height="18"/>
+            </pattern>
+          </defs>
+          <!-- Scanlines för CRT‑känsla -->
+          <rect x="0" y="0" width="160" height="200" fill="url(#rc-scan)" opacity="0.07"/>
+          <!-- Kant -->
+          <use href="#rc-shape" fill="#0b1222" stroke="#22d3ee" stroke-width="4"/>
+          <!-- Fyllning: höjd styrs i JS via rcFill -->
+          <g clip-path="url(#rc-clip)">
+            <rect id="rcFill" x="50" y="180" width="100" height="0" fill="url(#rc-coins)"/>
+          </g>
+          <!-- Innerglow -->
+          <use href="#rc-cavity" fill="none" stroke="#7dd3fc" stroke-width="2" opacity="0.35"/>
+          <!-- Defs för scanlines -->
+          <defs>
+            <pattern id="rc-scan" width="2" height="2" patternUnits="userSpaceOnUse">
+              <rect x="0" y="0" width="2" height="1" fill="#fff"/>
+              <rect x="0" y="1" width="2" height="1" fill="#000"/>
+            </pattern>
+          </defs>
+        </svg>
+        <div id="rc-coinRain" aria-hidden="true"></div>
+        <div id="rc-announcer" class="rc-sr" aria-live="polite"></div>
+      </div>
+
+      <div class="rc-stats">
+        <div class="rc-totals">
+          <div><span class="rc-label">Nuvarande:</span> <span id="rc-current">–</span></div>
+          <div><span class="rc-label">Mål:</span> <span id="rc-target">–</span></div>
+          <div><span class="rc-label">Fyllnad:</span> <span id="rc-pct">–</span></div>
+        </div>
+        <div class="rc-milestones" id="rc-ms"></div>
+        <div class="rc-spark">
+          <svg id="rc-sparkSvg" viewBox="0 0 220 48" role="img" aria-label="Daglig progression"></svg>
+        </div>
+      </div>
+    </section>
+
+    <footer class="rc-footer">
+      <small>Auto‑uppdateras från Google Sheet när sidan laddas.</small>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
