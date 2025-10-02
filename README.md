@@ -1,30 +1,30 @@
 
-# Retro Coin – Klassresa (auto-uppdatering)
+# Flaskwidget – Grön bubblande vätska + nyckelpigor (auto‑uppdatering)
 
-En 80-talsinspirerad widget för Google Sites som **automatiskt** hämtar data från Google Sheets (vid sidladdning) och visar progression mot mål. Myntregn + kling‑ljud vid delmål.
+Responsiv widget för Google Sites som hämtar data från Google Sheet vid sidladdning. Flaskform med rundade kanter fylls med **grön bubblande vätska**; **nyckelpigor** flyter runt; **myntregn** vid delmål. Ingen graf och inget ljud.
 
 ## Innehåll
-- `index.html` – widgeten
-- `styles.css` – retro-stil
-- `app.js` – hämtning från Google Sheet (GViz) + logik
-- `assets/coin.svg` – myntikon (lokal)
+- `index.html` – widgeten (SVG‑flaska, inga grafer/ljud)
+- `styles.css` – tema och layout (responsiv)
+- `app.js` – GViz‑hämtning + vätske/bubbelfx + delmål/myntregn
+- `assets/coin.svg`, `assets/ladybug.svg`
 
 ## Förutsättningar (Google Sheet)
-1. Flik **Data** med kolumner `date` (YYYY-MM-DD), `value` (ackumulerad totalsumma)
-2. Flik **Milestones** med `label`, `amount`, valfritt `target`
+1. Flik **Data**: `date` (YYYY‑MM‑DD), `value` (ackumulerad totalsumma)
+2. Flik **Milestones**: `label`, `amount`, valfritt `target`
 3. **Arkiv → Publicera på webben** för **båda** flikarna
 
-> Widgeten läser via GViz-endpointen: `https://docs.google.com/spreadsheets/d/<SHEET_ID>/gviz/tq?sheet=<FLIK>&tqx=out:json`
+> Widgeten läser via GViz: `https://docs.google.com/spreadsheets/d/<SHEET_ID>/gviz/tq?sheet=<FLIK>&tqx=out:json`
 
 ## Inbäddning i Google Sites
-1. Publicera mappen på t.ex. **GitHub Pages** eller **Netlify** (HTTPS krävs)
-2. I Google Sites: **Infoga → Inbäddat → URL** och peka på `index.html`
-3. Rekommenderad storlek: bredd 900–980 px, höjd 600–680 px
+1. Publicera mappen på **GitHub Pages**/Netlify (HTTPS)
+2. I Sites: **Infoga → Inbäddat → URL** → peka på `index.html`
+3. Rek. storlek: 900–980 px bred, 620–700 px hög
 
 ## Anpassning
-- Byt figur: redigera `#rc-shape`/`#rc-cavity` i `index.html`
-- Färger: i `styles.css`
-- Ljud: funktionen `chime()` i `app.js`
+- Färger (vätska/glas): `styles.css` och gradienterna i `index.html`
+- Antal nyckelpigor: `BUG_COUNT` i `app.js`
+- Bubbelintensitet: intervall i `startFluidFX()`
 
 ## Sekretess
-Publicera endast aggregerade värden. Vill ni behålla ert originalark privat, skapa ett **mellanark** som publiceras och hämtar data med `IMPORTRANGE()`.
+Publicera endast sammanställd data. För privat originalark, använd ett mellanark med `IMPORTRANGE()` och publicera mellanarket.
