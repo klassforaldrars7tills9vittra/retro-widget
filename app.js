@@ -46,7 +46,7 @@ function renderMilestones(){ const c=cur(); const nextIndex=S.ms.findIndex(m=>c<
 function coinRain(n=48){ if(S.reduced) return; const box=E.coinRain.getBoundingClientRect(); const count=Math.min(180, Math.max(20,n)); for(let i=0;i<count;i++){ const d=document.createElement('div'); d.className='coin'; const dur=1.4+Math.random()*1.2; const delay=Math.random()*0.6; const left=Math.random()*(box.width-18); const drift=(Math.random()*120-60)+'px'; d.style.left=left+'px'; d.style.setProperty('--x',drift); d.style.animation=`fall ${dur}s ${delay}s cubic-bezier(.2,.8,.2,1) both`; E.coinRain.appendChild(d); setTimeout(()=>d.remove(), (dur+delay)*1000+200); } }
 
 // === Bubbler & nyckelpigor ===
-let bubbleTimer; const BUG_COUNT = 4; const bugs = [];
+let bubbleTimer; const BUG_COUNT = 8; const bugs = [];
 function spawnBubble(){ if(S.reduced) return; const b=S.bbox; if(!b) return; const cx = b.x + Math.random()*b.width; const r = 2 + Math.random()*4; const startY = b.y + b.height - 4; const life = 1800 + Math.random()*1800; const c = document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('cx', cx); c.setAttribute('cy', startY); c.setAttribute('r', r); c.setAttribute('fill','url(#wb-bubble)'); c.style.opacity='0.85'; E.bubbles.appendChild(c); const drift = (Math.random()*12 - 6);
   const t0 = performance.now(); function tick(t){ const dt = t - t0; const k = Math.min(1, dt/life); const y = startY - k*S.bbox.height*0.9; const x = cx + drift*Math.sin(k*Math.PI*2); c.setAttribute('cy', y); c.setAttribute('cx', x); c.style.opacity = String(0.85*(1-k)); if(dt < life){ requestAnimationFrame(tick); } else { c.remove(); } }
   requestAnimationFrame(tick);
