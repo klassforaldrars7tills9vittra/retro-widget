@@ -1,81 +1,27 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Klassens insamling – Flaskwidget</title>
-  <!-- Strikt CSP: endast self + docs.google.com för GViz -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://docs.google.com; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-  <link rel="stylesheet" href="styles.css"/>
+  <meta charset="UTF-8">
+  <title>Kommentarsformulär</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 2rem;
+    }
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-  <main class="wb-wrap">
-    <header class="wb-header">
-      <h1>🧪 Klassens insamling</h1>
-      <div class="wb-controls">
-        <label class="wb-toggle"><input type="checkbox" id="wb-motion"> <span>🚫 Rörelse</span></label>
-      </div>
-    </header>
-
-    <section class="wb-board">
-      <div class="wb-bottle-area">
-        <svg id="wb-svg" class="wb-bottle" viewBox="0 0 260 520" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Flaska som fylls med grön vätska">
-          <defs>
-            <!-- Yttre kontur (rund flaska) -->
-            <path id="wb-bottleShape" d="M120 10 h20 a12 12 0 0 1 12 12 v42 a28 28 0 0 0 10 21 c22 20 38 48 38 84v210a70 70 0 0 1-70 70h-30a70 70 0 0 1-70-70V169c0-36 16-64 38-84a28 28 0 0 0 10-21V22a12 12 0 0 1 12-12z" />
-            <!-- Inre kavitet -->
-            <path id="wb-cavity" d="M123 24 h14 a6 6 0 0 1 6 6 v38 a34 34 0 0 0 11 25 c18 16 32 40 32 70v206a56 56 0 0 1-56 56h-24a56 56 0 0 1-56-56V163c0-30 14-54 32-70a34 34 0 0 0 11-25V30a6 6 0 0 1 6-6z" />
-            <clipPath id="wb-clip"><use href="#wb-cavity"/></clipPath>
-            <!-- Vätskans gradient -->
-            <linearGradient id="wb-green" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#3efc7a"/>
-              <stop offset="100%" stop-color="#0ea85a"/>
-            </linearGradient>
-            <!-- Bubbelhighlight -->
-            <radialGradient id="wb-bubble" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#b8ffd3" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#b8ffd3" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <!-- Flaskan -->
-          <use href="#wb-bottleShape" fill="#0000" stroke="#74e3a9" stroke-width="6" opacity="0.95"/>
-
-          <!-- Innehåll (klippt till kaviteten) -->
-          <g id="wb-fluid" clip-path="url(#wb-clip)">
-            <!-- Fyllnadsrektangel (höjd styrs i JS) -->
-            <rect id="wb-fill" x="0" y="0" width="0" height="0" fill="url(#wb-green)"/>
-            <!-- Bubbellager -->
-            <g id="wb-bubbles"></g>
-            <!-- Nyckelpigor -->
-            <g id="wb-bugs"></g>
-            <!-- Mörk skugga överst för vätskeyta -->
-            <rect id="wb-surfaceShade" x="0" y="0" width="0" height="8" fill="#000" opacity="0.08"/>
-          </g>
-
-          <!-- Glasglow -->
-          <use href="#wb-cavity" fill="none" stroke="#e2ffe5" stroke-width="2" opacity="0.2"/>
-        </svg>
-        <div id="wb-coinRain" aria-hidden="true"></div>
-        <div id="wb-announcer" class="wb-sr" aria-live="polite"></div>
-      </div>
-
-      <div class="wb-stats">
-        <div class="wb-totals">
-          <div><span class="wb-label">Nuvarande:</span> <span id="wb-current">–</span></div>
-          <div><span class="wb-label">Mål:</span> <span id="wb-target">–</span></div>
-          <div><span class="wb-label">Fyllnad:</span> <span id="wb-pct">–</span></div>
-        </div>
-        <div class="wb-milestones" id="wb-ms"></div>
-      </div>
-    </section>
-
-    <footer class="wb-footer">
-      <small>Uppdateras automatiskt från Google Sheet vid sidladdning.</small>
-    </footer>
-  </main>
-
-  <script src="app.js"></script>
+  <h1>Kommentarsformulär</h1>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNvtuwpfhDIk2kPQ_a7CarXFB1vP8CqxBH2A9IPvSmtXoduQ/viewform?embedded=true">Laddar…</iframe>
 </body>
 </html>

@@ -1,30 +1,29 @@
+# Google Formulär – Kommentarswidget
 
-# Flaskwidget – Grön bubblande vätska + nyckelpigor (auto‑uppdatering)
+Denna widget bäddar in ett Google Formulär som kommentarsfält.
 
-Responsiv widget för Google Sites som hämtar data från Google Sheet vid sidladdning. Flaskform med rundade kanter fylls med **grön bubblande vätska**; **nyckelpigor** flyter runt; **myntregn** vid delmål. Ingen graf och inget ljud.
+## Så använder du
 
-## Innehåll
-- `index.html` – widgeten (SVG‑flaska, inga grafer/ljud)
-- `styles.css` – tema och layout (responsiv)
-- `app.js` – GViz‑hämtning + vätske/bubbelfx + delmål/myntregn
-- `assets/coin.svg`, `assets/ladybug.svg`
+1. **Publicera formuläret**:
+   - Öppna formuläret i Google Forms.
+   - Klicka på **Skicka → `</>` (Embed)**.
+   - Kopiera `src`-länken från iframe-koden.
 
-## Förutsättningar (Google Sheet)
-1. Flik **Data**: `date` (YYYY‑MM‑DD), `value` (ackumulerad totalsumma)
-2. Flik **Milestones**: `label`, `amount`, valfritt `target`
-3. **Arkiv → Publicera på webben** för **båda** flikarna
+2. **Byt ut länken i `index.html`** om du vill använda ett annat formulär.
 
-> Widgeten läser via GViz: `https://docs.google.com/spreadsheets/d/<SHEET_ID>/gviz/tq?sheet=<FLIK>&tqx=out:json`
+3. **Publicera på GitHub Pages**:
+   - Skapa ett nytt repo.
+   - Ladda upp `index.html` och `README.md`.
+   - Gå till **Settings → Pages** och välj `main` branch, root folder.
+   - Din widget blir tillgänglig via `https://<användarnamn>.github.io/<repo>/`.
 
-## Inbäddning i Google Sites
-1. Publicera mappen på **GitHub Pages**/Netlify (HTTPS)
-2. I Sites: **Infoga → Inbäddat → URL** → peka på `index.html`
-3. Rek. storlek: 900–980 px bred, 620–700 px hög
+4. **Bädda in i Google Sites**:
+   - Gå till din Site.
+   - Välj **Infoga → Inbäddat → URL**.
+   - Klistra in länken till din publicerade `index.html`.
 
 ## Anpassning
-- Färger (vätska/glas): `styles.css` och gradienterna i `index.html`
-- Antal nyckelpigor: `BUG_COUNT` i `app.js`
-- Bubbelintensitet: intervall i `startFluidFX()`
 
-## Sekretess
-Publicera endast sammanställd data. För privat originalark, använd ett mellanark med `IMPORTRANGE()` och publicera mellanarket.
+- Ändra höjden på formuläret i `index.html` genom att justera `height` i `<iframe>` eller CSS.
+- Du kan lägga till fler stilar eller rubriker i HTML-filen.
+
